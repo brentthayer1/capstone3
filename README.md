@@ -2,13 +2,8 @@
 
 Brent Thayer
 
-## Idea 1
-Continue off of my previous capstone with chest xrays, but train a model with a larger dataset and 14 labels.
 
-https://www.kaggle.com/user123454321/nih-chest
+For this final capstone, I would like to improve upon my last capstone.  The main area I am thinking might help would be to remove the bones and bone shadows in the x ray images.  Building and applying this type of filter seems very challenging, and would probably be the majority of the project.  
 
-## Idea 2
-Another type of continuation from the previous capstone.  use an auto encoder to eliminate bone shadow from chest x-ray images, which could lead to a better classification model.  If I went this route, I would probably want to use this on a smaller continuation of capstone 2.  Probably classifying pneumonia or COVID in an x-ray.
+To top it off though for my MVP, I would like to also encorporate a COVID class in addition to no finding and pneumonia.  Initially I would like to try and work with the architecture I built for the previous project since I got pretty good mileage out of it.  If this doesn't pan out, I would like to explore some transfer learning options.
 
-## Idea 3
-Train a model to recognize simple sign language (letters), and build an app to display these predictions in real time.
