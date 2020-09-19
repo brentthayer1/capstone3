@@ -10,20 +10,13 @@ from io import BytesIO
 
 from tensorflow.keras.preprocessing.image import load_img
 
-# def base64_to_pil(img_base64):
-#     """
-#     Convert base64 image data to PIL image
-#     """
-#     image_data = re.sub('^data:image/.+;base64,', '', img_base64)
-#     pil_image = Image.open(BytesIO(base64.b64decode(image_data)))
-#     return pil_image
-
-def base64_to_pil(img):
+def base64_to_pil(img_base64):
     """
     Convert base64 image data to PIL image
     """
-    image = load_img(img)
-    return image
+    image_data = re.sub('^data:image/.+;base64,', '', img_base64)
+    pil_image = Image.open(BytesIO(base64.b64decode(image_data)))
+    return pil_image
 
 def np_to_base64(img_np):
     """
