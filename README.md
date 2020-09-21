@@ -29,6 +29,15 @@ I observed my MSE dropping off fairly quickly.  I let my final model train for a
 
 My output from the autoencoder was not what I expected, but continued on to test my classification model with and without the autoencoder.
 
+## Training Classification Network
+### Class Distribtuion
+
+<img src="/images/train_data.png" alt="train"
+	title="train" width="450" height="250" />
+
+<img src="/images/val_data.png" alt="vall"
+	title="vall" width="450" height="250" />
+
 
 ### Result of network with AE
 
@@ -55,8 +64,5 @@ image
 	title="norm_pred" width="600" height="400" />
 
 
-
-
-
-To top it off though for my MVP, I would like to also encorporate a COVID class in addition to no finding and pneumonia.  Initially I would like to try and work with the architecture I built for the previous project since I got pretty good mileage out of it.  If this doesn't pan out, I would like to explore some transfer learning options.
+Please click here to view my presentation slide deck.
 
