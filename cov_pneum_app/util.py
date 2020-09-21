@@ -16,6 +16,8 @@ def base64_to_pil(img_base64):
     """
     image_data = re.sub('^data:image/.+;base64,', '', img_base64)
     pil_image = Image.open(BytesIO(base64.b64decode(image_data)))
+    pil_image = pil_image.convert('L')
+    pil_image = pil_image.resize((300, 300))
     return pil_image
 
 def np_to_base64(img_np):
