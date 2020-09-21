@@ -2,7 +2,6 @@ import os
 import sys
 from flask import Flask, redirect, url_for, request, render_template, Response, jsonify, redirect
 from werkzeug.utils import secure_filename
-from gevent.pywsgi import WSGIServer
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.models import load_model

@@ -1,4 +1,4 @@
-# Capstone 3 Proposal
+# X-ray classification and Bone Shaddow Removal
 
 Brent Thayer
 
