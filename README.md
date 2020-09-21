@@ -33,10 +33,10 @@ My output from the autoencoder was not what I expected, but continued on to test
 ### Class Distribtuion
 
 <img src="/images/train_data.png" alt="train"
-	title="train" width="450" height="250" />
+	title="train" width="600" height="400" />
 
 <img src="/images/val_data.png" alt="vall"
-	title="vall" width="450" height="250" />
+	title="vall" width="600" height="400" />
 
 
 ### Result of network with AE
@@ -50,7 +50,7 @@ image
 ## Final Model
 
 <img src="/images/final_model_metrics.png" alt="final_model"
-	title="final_model" width="500" height="250" />
+	title="final_model" width="600" height="400" />
 
 ### Final Model Predictions On Unseen Images
 
