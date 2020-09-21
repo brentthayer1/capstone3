@@ -3,7 +3,7 @@ val_data_dir = '/content/chest_xray/chest_xray/test'
 
 
 #-----------------------------#  CNN  #------------------------------# 
-model_name = 'model_sept_7'
+model_name = '/content/gdrive/My Drive/TF_models/test_model_plus_ae.h5'
 seed = 42
 
 nb_classes = 3
@@ -24,7 +24,7 @@ class_weights = {0 : 9.6690476,
 
 img_rows, img_cols = 300, 300
 batch_size = 32
-nb_epoch = 10    
+nb_epoch = 100    
 
 
 #---------------------------#  CONV2D0 #-----------------------------#                       
@@ -94,7 +94,6 @@ dropout_7 = 0.5
 l2_7 = 0.001
 
 
-
 #---------------------------#  COMPILE  #----------------------------#                  
 compile_optimizer = Adam(lr=0.0001)
 
@@ -104,7 +103,6 @@ if K.image_data_format() == 'channels_first':
 else:
     input_shape = (img_cols, img_rows, 1)
     chanDim = -1
-
 
 
 #----------------------------#  MODEL  #-----------------------------# 
@@ -204,28 +202,27 @@ METRICS = [ metrics.CategoricalAccuracy(name='ACCURACY'),
            metrics.SpecificityAtSensitivity(0.5, name='Spec@Sens')]
 
 #--------------------------#  COMPILE  #-----------------------------# 
+# model.compile(loss='categorical_crossentropy',
+#                 optimizer=compile_optimizer,
+#                 metrics=METRICS)
+
+
+
 model.compile(loss='categorical_crossentropy',
                 optimizer=compile_optimizer,
                 metrics=METRICS)
 
 
 #----------------------#  DATAGENERATORS  #--------------------------# 
-def AHE(img):
-    ahe = exposure.equalize_adapthist(img, clip_limit=0.03)
-    return ahe
 
 train_datagen = ImageDataGenerator(
     rescale=1. / 255,
     shear_range=0.2,
-    zoom_range=0.2,
-    preprocessing_function=AHE
+    zoom_range=0.2
     )
 
 val_datagen = ImageDataGenerator(
-    rescale=1. / 255,
-    shear_range=0.01,
-    zoom_range=0.01,
-    preprocessing_function=AHE
+    rescale=1. / 255
     )
 
 
@@ -246,12 +243,8 @@ validation_generator = val_datagen.flow_from_directory(
     shuffle=False)
 
 
-#---------------------------#  SUMMARY  #-----------------------------# 
-model.summary()
-
-
 es = EarlyStopping(monitor='val_loss', mode='min', 
-                   verbose=1, patience=15,
+                   verbose=1, patience=20,
                    restore_best_weights=True)
 
 name = model_name + '.h5'
@@ -259,16 +252,15 @@ mc = ModelCheckpoint(name, monitor='val_loss',
                      mode='min', verbose=1, save_best_only=True)
 
 
-
 #-----------------------------#  FIT  #-------------------------------# 
-history = model.fit(
+history = new_model.fit(
     train_generator,
     steps_per_epoch= train_generator.samples // batch_size,
     epochs=nb_epoch,
     validation_data= validation_generator,
     validation_steps= validation_generator.samples // batch_size,
     class_weight=class_weights,
-    callbacks=[es]
+    callbacks=[es, mc]
     )
 
 label_map = (train_generator.class_indices)
@@ -311,9 +303,6 @@ ax[1][1].set_xlabel('Epoch')
 ax[1][1].legend(['train', 'val'], loc='best')
 plt.tight_layout()
 
-# plot_model(model, to_file='image2.png', show_shapes=True, show_layer_names=True)
-;
-
 
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
@@ -337,6 +326,7 @@ def plot_confusion_matrix(cm, classes,
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
+    plt.title('Confusion Matrix')
 
 
 validation_generator.reset()
@@ -344,6 +334,26 @@ Y_pred = model.predict(validation_generator)
 y_pred = np.argmax(Y_pred, axis=1)
 cm = confusion_matrix(validation_generator.classes, y_pred)
 plot_confusion_matrix(cm, classes, normalize=False)
+
+
+image_path = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1438-0001.jpeg'
+
+image = load_img(image_path,color_mode='grayscale', target_size=(img_rows,img_cols))
+input_arr = img_to_array(image)
+input_arr = np.array([input_arr])
+input_arr = input_arr / 255
+probs = model.predict(input_arr)
+
+test_image = cv2.imread(image_path)
+test_image = cv2.resize(test_image, (img_rows, img_cols),interpolation=cv2.INTER_NEAREST)
+plt.imshow(test_image)
+plt.xticks([],[])
+plt.yticks([],[])
+pred_class = np.argmax(probs)
+
+pred_class = class_dict[pred_class]
+
+print('prediction: ',pred_class)
 
 
 def find_true_class(file_path):
@@ -379,17 +389,6 @@ def prediction(file_path, ax, model):
         ax.set_title(f"Pred: {pred_class} \nActual: {true_class}", fontsize=13)
 
 
-
-image1 = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1427-0001.jpeg'
-image2 = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1430-0001.jpeg'
-image3 = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1431-0001.jpeg'
-image4 = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1436-0001.jpeg'
-image5 = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1437-0001.jpeg'
-image6 = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1438-0001.jpeg'
-image7 = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1440-0001.jpeg'
-image8 = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1442-0001.jpeg'
-image9 = '/content/chest_xray/chest_xray/val/NORMAL/NORMAL2-IM-1442-0001.jpeg'
-
 fig,ax = plt.subplots(3,3,figsize=(12,12))
 fig.suptitle('Normal', fontsize=18)
 prediction(image1, ax[0][0], model)
@@ -401,5 +400,3 @@ prediction(image6, ax[1][2], model)
 prediction(image7, ax[2][0], model)
 prediction(image8, ax[2][1], model)
 prediction(image9, ax[2][2], model)
-
-
