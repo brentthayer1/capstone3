@@ -12,20 +12,18 @@ from util import base64_to_pil
 
 app = Flask(__name__)
 
-MODEL_PATH = 'models/model_sept_7_evening.h5'
+MODEL_PATH = 'models/final_cov_pneum_300_2.h5'
 model = load_model(MODEL_PATH)
 
 print('Model loaded. Start serving...')
 
 def model_predict(img, model):
-    # image = load_img(img,color_mode='grayscale', target_size=(300,300))
-    # img = img.resize((300, 300))
     class_dict = {      0 : 'COVID-19',
                         1 : 'Normal',
                         2 : 'Pneumonia'}
 
     input_arr = img_to_array(img)
-    # input_arr = np.array([input_arr])
+
     input_arr = input_arr / 255
     input_arr = np.expand_dims(input_arr, axis=0)
     probs = model.predict(input_arr)
@@ -43,11 +41,7 @@ def predict():
         img = base64_to_pil(request.json)
         pred = model_predict(img, model)
         return jsonify(result=pred)
-        # return pred
     return None
 
 if __name__ == '__main__':
-    # app.run(port=5000, threaded=False)
-
-    http_server = WSGIServer(('0.0.0.0', 5000), app)
-    http_server.serve_forever()
+    app.run(port=5000, threaded=False)
