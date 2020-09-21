@@ -46,13 +46,13 @@ image
 ### Final Model Predictions On Unseen Images
 
 <img src="/images/cov_pred.png" alt="cov_pred"
-	title="cov_pred" width="500" height="250" />
+	title="cov_pred" width="600" height="400" />
 
 <img src="/images/pneum_pred.png" alt="pneum_pred"
-	title="pneum_pred" width="500" height="250" />
+	title="pneum_pred" width="600" height="400" />
 
 <img src="/images/norm_pred.png" alt="norm_pred"
-	title="norm_pred" width="500" height="250" />
+	title="norm_pred" width="600" height="400" />
 
 
 
