@@ -11,7 +11,7 @@ from util import base64_to_pil
 
 app = Flask(__name__)
 
-MODEL_PATH = 'models/final_cov_pneum_300_2.h5'
+MODEL_PATH = 'models/FINAL_MODEL_3.h5.h5'
 model = load_model(MODEL_PATH)
 
 print('Model loaded. Start serving...')
