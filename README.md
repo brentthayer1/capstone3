@@ -25,25 +25,14 @@ My dataset to accomplish this consisted of 241 pairs of images.
 <img src="/images/first_500_oo_1500.png" alt="loss"
 	title="loss" width="450" height="250" />
 
-I observed my MSE dropping off fairly quickly.  I let my final model train for a total of 10,000 epochs in hopes the loss drop even more.  
+I observed my MSE dropping off fairly quickly.  
 
 ### Final Autoencoder Prediction
 
 <img src="/images/val_loss_65_58.png" alt="pred"
 	title="pred" width="500" height="250" />
 
-My output from the autoencoder was not what I expected, but continued on to test my classification model with and without the autoencoder.
-
-## Training Classification Network
-### Class Distribtuion
-
-<img src="/images/train_data.png" alt="train"
-	title="train" width="600" height="400" />
-
-<img src="/images/val_data.png" alt="vall"
-	title="vall" width="600" height="400" />
-
-## Final Model
+## Model
 
 <img src="/images/FINAL_MODEL.png" alt="final_model"
 	title="final_model" width="600" height="400" />
