@@ -49,4 +49,5 @@ My output from the autoencoder was not what I expected, but continued on to test
 	title="final_model" width="600" height="400" />
 
 
-[Please click here to view my presentation slide deck.](https://github.com/brentthayer1/capstone3/tree/master/cs3_slides_final_pdf.pdf)
+
+[Presentation](https://github.com/brentthayer1/capstone3/tree/master/cs3_slides_final_pdf.pdf)
