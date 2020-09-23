@@ -1,11 +1,11 @@
-# X-ray classification and Bone Shaddow Removal
+# Chest X-Ray Classification And Shaddow Removal
 
 Brent Thayer
 
 
 
 ## Topic
-The topic of this project was to try to improve a network's ability to accurately predict a chest X-ray.  My main question is if removing the bones from the X-rays could possibly help.  I tried to accomplish this by the use of a denoising autoencoder.
+The topic of this project was to try to improve a network's ability to accurately predict a chest X-ray.  My main question is if removing the bones from the X-rays could possibly help.  I tried to accomplish this by the use of an autoencoder.
 
 ## Data
 
