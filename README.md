@@ -64,6 +64,4 @@ image
 	title="norm_pred" width="600" height="400" />
 
 
-Please click here to view my presentation slide deck. cs3_slides_final_pdf.pdf
-
 [Please click here to view my presentation slide deck.](https://github.com/brentthayer1/capstone3/tree/master/cs3_slides_final_pdf.pdf)
