@@ -48,16 +48,5 @@ My output from the autoencoder was not what I expected, but continued on to test
 <img src="/images/FINAL_MODEL.png" alt="final_model"
 	title="final_model" width="600" height="400" />
 
-### Final Model Predictions On Unseen Images
-
-<img src="/images/cov_pred.png" alt="cov_pred"
-	title="cov_pred" width="600" height="400" />
-
-<img src="/images/pneum_pred.png" alt="pneum_pred"
-	title="pneum_pred" width="600" height="400" />
-
-<img src="/images/norm_pred.png" alt="norm_pred"
-	title="norm_pred" width="600" height="400" />
-
 
 [Please click here to view my presentation slide deck.](https://github.com/brentthayer1/capstone3/tree/master/cs3_slides_final_pdf.pdf)
