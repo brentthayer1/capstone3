@@ -29,7 +29,7 @@ I observed my MSE dropping off fairly quickly.  I let my final model train for a
 
 ### Final Autoencoder Prediction
 
-<img src="/images/ae_prediction.png" alt="pred"
+<img src="/images/val_loss_65_58.png" alt="pred"
 	title="pred" width="500" height="250" />
 
 My output from the autoencoder was not what I expected, but continued on to test my classification model with and without the autoencoder.
