@@ -1,4 +1,4 @@
-# Chest X-Ray Classification And Shaddow Removal
+# Chest X-Ray Classification And Bone Removal
 
 Brent Thayer
 
